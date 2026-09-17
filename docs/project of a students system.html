@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>D:\CodeBlocks_labs\hassan\main.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="generator" content="Code::Blocks Exporter plugin" />
+<style type="text/css">
+<!--
+body { color: #000000; background-color: #FFFFFF; }
+.style11 { color: #000000; background-color: #FFFFFF; }
+.style64 { color: #C8C8C8; }
+.style72 { color: #C8C8C8; }
+.style75 { color: #C8C8C8; }
+.style1 { color: #9898D9; }
+.style23 { color: #9898D9; }
+.style65 { color: #C0C0C0; }
+.style87 { color: #C0C0C0; }
+.style2 { color: #9898D9; }
+.style66 { color: #C0C0C0; }
+.style3 { color: #8080FF; font-weight: bold; }
+.style24 { color: #8080FF; font-weight: bold; }
+.style67 { color: #AAAAF0; font-weight: bold; }
+.style88 { color: #AAAAF0; font-weight: bold; }
+.style15 { color: #8080FF; font-weight: bold; }
+.style79 { color: #AAAAF0; font-weight: bold; }
+.style17 { color: #008080; }
+.style81 { color: #6B9999; }
+.style18 { color: #800000; }
+.style82 { color: #AC5959; }
+.style4 { color: #F000F0; }
+.style68 { color: #F0C8F0; }
+.style5 { color: #0000A0; font-weight: bold; }
+.style69 { color: #8787C8; font-weight: bold; }
+.style16 { color: #00A000; font-weight: bold; }
+.style80 { color: #9AC89A; font-weight: bold; }
+.style19 { color: #BE00BE; font-weight: bold; }
+.style83 { color: #BE89BE; font-weight: bold; }
+.style6 { color: #0000FF; }
+.style12 { color: #0000FF; }
+.style20 { color: #0000FF; }
+.style70 { color: #BEBEFF; }
+.style76 { color: #BEBEFF; }
+.style7 { color: #E0A000; }
+.style71 { color: #E0CE9F; }
+.style8 { color: #000000; }
+.style9 { color: #00A000; }
+.style73 { color: #84A084; }
+.style10 { color: #FF0000; }
+.style74 { color: #FFC8C8; }
+.style50 { color: #404080; font-style: italic; }
+.style114 { color: #8585AC; font-style: italic; }
+.style34 { color: #000000; background-color: #80FFFF; font-weight: bold; }
+.style35 { color: #FFFFFF; background-color: #FF0000; font-weight: bold; }
+.style37 { color: #373737; }
+--></style></head>
+<body>
+<pre>
+<code><span style="font: 8pt Courier New;"><span class="body">  1 </span><span class="style9">#include &lt;iostream&gt;</span>
+<span class="body">  2  </span><span class="style9">#include &lt;iomanip&gt;</span>
+<span class="body">  3  </span><span class="style9">#include &lt;windows.h&gt;</span>
+<span class="body">  4  </span><span class="style9">#include &lt;string&gt;</span>
+<span class="body">  5  </span>
+<span class="body">  6  </span><span class="style9">#include &lt;fstream&gt;</span>
+<span class="body">  7  </span><span class="style5">using namespace </span><span class="style16">std</span><span class="style10">;</span>
+<span class="body">  8  </span>
+<span class="body">  9  </span><span class="style5">struct </span><span class="style11">students </span><span class="style10">{</span>
+<span class="body"> 10      </span><span class="style5">int </span><span class="style11">id</span><span class="style10">{};</span>
+<span class="body"> 11      </span><span class="style16">string </span><span class="style11">first_name</span><span class="style10">{};</span>
+<span class="body"> 12      </span><span class="style16">string </span><span class="style11">last_name</span><span class="style10">{};</span>
+<span class="body"> 13      </span><span class="style5">char </span><span class="style11">gender</span><span class="style10">{};</span>
+<span class="body"> 14      </span><span class="style16">string </span><span class="style11">phone_number</span><span class="style10">{};</span>
+<span class="body"> 15      </span><span class="style16">string </span><span class="style11">department</span><span class="style10">{};</span>
+<span class="body"> 16      </span><span class="style5">float </span><span class="style11">marks</span><span class="style10">[</span><span class="style4">7</span><span class="style10">] {};</span>
+<span class="body"> 17  </span><span class="style10">} </span><span class="style11">student</span><span class="style10">;</span>
+<span class="body"> 18  </span>
+<span class="body"> 19  </span>
+<span class="body"> 20  </span><span class="style2">//add/insert function</span>
+<span class="body"> 21  </span><span class="style5">void </span><span class="style11">add</span><span class="style10">() {</span>
+<span class="body"> 22  </span>
+<span class="body"> 23      </span><span class="style16">ofstream </span><span class="style11">file</span><span class="style10">(</span><span class="style6">"student.txt"</span><span class="style10">, </span><span class="style11">ios</span><span class="style10">::</span><span class="style11">out </span><span class="style10">| </span><span class="style11">ios</span><span class="style10">::</span><span class="style11">app</span><span class="style10">);</span>
+<span class="body"> 24  </span>
+<span class="body"> 25      </span><span class="style5">if </span><span class="style10">(</span><span class="style11">file</span><span class="style10">)</span>
+<span class="body"> 26      </span><span class="style10">{</span>
+<span class="body"> 27          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter student id: "</span><span class="style10">;</span>
+<span class="body"> 28          </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id</span><span class="style10">;</span>
+<span class="body"> 29  </span>
+<span class="body"> 30          </span><span class="style16">cin</span><span class="style10">.</span><span class="style11">ignore</span><span class="style10">(</span><span class="style4">100</span><span class="style10">, </span><span class="style7">'\n'</span><span class="style10">);</span>
+<span class="body"> 31          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter student first_name: "</span><span class="style10">;</span>
+<span class="body"> 32          </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name</span><span class="style10">;</span>
+<span class="body"> 33  </span>
+<span class="body"> 34          </span><span class="style16">cin</span><span class="style10">.</span><span class="style11">ignore</span><span class="style10">(</span><span class="style4">100</span><span class="style10">, </span><span class="style7">'\n'</span><span class="style10">);</span>
+<span class="body"> 35          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter student last_name: "</span><span class="style10">;</span>
+<span class="body"> 36          </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name</span><span class="style10">;</span>
+<span class="body"> 37  </span>
+<span class="body"> 38      </span><span class="style11">gender</span><span class="style10">:</span>
+<span class="body"> 39          </span><span class="style16">cin</span><span class="style10">.</span><span class="style11">ignore</span><span class="style10">(</span><span class="style4">100</span><span class="style10">, </span><span class="style7">'\n'</span><span class="style10">);</span>
+<span class="body"> 40          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter student gender: "</span><span class="style10">;</span>
+<span class="body"> 41          </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender</span><span class="style10">;</span>
+<span class="body"> 42          </span><span class="style5">while </span><span class="style10">(</span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">!= </span><span class="style7">'M' </span><span class="style10">&amp;&amp; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">!= </span><span class="style7">'m' </span><span class="style10">&amp;&amp; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">!= </span><span class="style7">'F' </span><span class="style10">&amp;&amp; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">!= </span><span class="style7">'f'</span><span class="style10">)</span>
+<span class="body"> 43          </span><span class="style10">{</span>
+<span class="body"> 44              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Please enter M/F: "</span><span class="style10">;</span>
+<span class="body"> 45              </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender</span><span class="style10">;</span>
+<span class="body"> 46          </span><span class="style10">}</span>
+<span class="body"> 47  </span>
+<span class="body"> 48      </span><span class="style11">number</span><span class="style10">:</span>
+<span class="body"> 49          </span><span class="style16">cin</span><span class="style10">.</span><span class="style11">ignore</span><span class="style10">(</span><span class="style4">100</span><span class="style10">, </span><span class="style7">'\n'</span><span class="style10">);</span>
+<span class="body"> 50          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter student phone_number: "</span><span class="style10">;</span>
+<span class="body"> 51          </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number</span><span class="style10">;</span>
+<span class="body"> 52          </span><span class="style16">string size </span><span class="style10">= </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number</span><span class="style10">;</span>
+<span class="body"> 53          </span><span class="style5">if </span><span class="style10">(</span><span class="style16">size</span><span class="style10">.</span><span class="style11">length</span><span class="style10">() != </span><span class="style4">9</span><span class="style10">) {</span>
+<span class="body"> 54              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"The four number must contain nine digit...\n"</span><span class="style10">;</span>
+<span class="body"> 55              </span><span class="style5">goto </span><span class="style11">number</span><span class="style10">;</span>
+<span class="body"> 56          </span><span class="style10">}</span>
+<span class="body"> 57          </span><span class="style5">if </span><span class="style10">((</span><span class="style16">size</span><span class="style10">[</span><span class="style4">0</span><span class="style10">] != </span><span class="style7">'7' </span><span class="style10">&amp;&amp; </span><span class="style16">size</span><span class="style10">[</span><span class="style4">1</span><span class="style10">] != </span><span class="style7">'7'</span><span class="style10">) || (</span><span class="style16">size</span><span class="style10">[</span><span class="style4">0</span><span class="style10">] != </span><span class="style7">'7' </span><span class="style10">&amp;&amp; </span><span class="style16">size</span><span class="style10">[</span><span class="style4">1</span><span class="style10">] != </span><span class="style7">'3'</span><span class="style10">) || (</span><span class="style16">size</span><span class="style10">[</span><span class="style4">0</span><span class="style10">] != </span><span class="style7">'7' </span><span class="style10">&amp;&amp; </span><span class="style16">size</span><span class="style10">[</span><span class="style4">1</span><span class="style10">] != </span><span class="style7">'1'</span><span class="style10">))</span>
+<span class="body"> 58          </span><span class="style10">{</span>
+<span class="body"> 59              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"The First tow number must be 77, 73, or 71...\n"</span><span class="style10">;</span>
+<span class="body"> 60              </span><span class="style5">goto </span><span class="style11">number</span><span class="style10">;</span>
+<span class="body"> 61          </span><span class="style10">}</span>
+<span class="body"> 62  </span>
+<span class="body"> 63  </span>
+<span class="body"> 64          </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style16">size</span><span class="style10">.</span><span class="style11">length</span><span class="style10">(); </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body"> 65          </span><span class="style10">{</span>
+<span class="body"> 66              </span><span class="style5">while </span><span class="style10">(</span><span class="style16">size</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] != </span><span class="style7">'1' </span><span class="style10">&amp;&amp; </span><span class="style16">size</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] != </span><span class="style7">'2' </span><span class="style10">&amp;&amp; </span><span class="style16">size</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] != </span><span class="style7">'3' </span><span class="style10">&amp;&amp; </span><span class="style16">size</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] != </span><span class="style7">'4' </span><span class="style10">&amp;&amp; </span><span class="style16">size</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] != </span><span class="style7">'5' </span><span class="style10">&amp;&amp; </span><span class="style16">size</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] != </span><span class="style7">'6' </span><span class="style10">&amp;&amp; </span><span class="style16">size</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] != </span><span class="style7">'7' </span><span class="style10">&amp;&amp; </span><span class="style16">size</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] != </span><span class="style7">'8' </span><span class="style10">&amp;&amp; </span><span class="style16">size</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] != </span><span class="style7">'9' </span><span class="style10">&amp;&amp; </span><span class="style16">size</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] != </span><span class="style7">'0' </span><span class="style10">&amp;&amp; </span><span class="style16">size</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] != </span><span class="style7">' '</span><span class="style10">) {</span>
+<span class="body"> 67                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Please enter the phone_number with only numbers...\n"</span><span class="style10">;</span>
+<span class="body"> 68                  </span><span class="style5">goto </span><span class="style11">number</span><span class="style10">;</span>
+<span class="body"> 69              </span><span class="style10">}</span>
+<span class="body"> 70          </span><span class="style10">}</span>
+<span class="body"> 71  </span>
+<span class="body"> 72      </span><span class="style11">dept</span><span class="style10">:</span>
+<span class="body"> 73          </span><span class="style16">cin</span><span class="style10">.</span><span class="style11">ignore</span><span class="style10">(</span><span class="style4">100</span><span class="style10">, </span><span class="style7">'\n'</span><span class="style10">);</span>
+<span class="body"> 74                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"The First tow number must be 77, 73, or 71...\n"</span><span class="style10">;</span>
+<span class="body"> 75  </span>
+<span class="body"> 76          </span><span class="style5">if </span><span class="style10">(</span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">!= </span><span class="style6">"IT" </span><span class="style10">&amp;&amp; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">!= </span><span class="style6">"IS" </span><span class="style10">&amp;&amp; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">!= </span><span class="style6">"CS"</span><span class="style10">) {</span>
+<span class="body"> 77              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"The department MUST be(IT, IS OR CS)....\n"</span><span class="style10">;</span>
+<span class="body"> 78              </span><span class="style5">goto </span><span class="style11">dept</span><span class="style10">;</span>
+<span class="body"> 79          </span><span class="style10">}</span>
+<span class="body"> 80  </span>
+<span class="body"> 81  </span>
+<span class="body"> 82          </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body"> 83          </span><span class="style10">{</span>
+<span class="body"> 84          </span><span class="style11">grade</span><span class="style10">:</span>
+<span class="body"> 85              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter student grade " </span><span class="style10">&lt;&lt; </span><span class="style11">i </span><span class="style10">+ </span><span class="style4">1 </span><span class="style10">&lt;&lt; </span><span class="style6">": "</span><span class="style10">;</span>
+<span class="body"> 86              </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body"> 87              </span><span class="style5">if </span><span class="style10">(</span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt; </span><span class="style4">0 </span><span class="style10">|| </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &gt; </span><span class="style4">100</span><span class="style10">)</span>
+<span class="body"> 88              </span><span class="style10">{</span>
+<span class="body"> 89                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter valid grade please,....\n"</span><span class="style10">;</span>
+<span class="body"> 90                  </span><span class="style5">goto </span><span class="style11">grade</span><span class="style10">;</span>
+<span class="body"> 91              </span><span class="style10">}</span>
+<span class="body"> 92          </span><span class="style10">}</span>
+<span class="body"> 93  </span>
+<span class="body"> 94          </span><span class="style11">file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&lt;&lt; </span><span class="style7">' '</span>
+<span class="body"> 95              </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">&lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body"> 96  </span>
+<span class="body"> 97          </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body"> 98          </span><span class="style10">{</span>
+<span class="body"> 99              </span><span class="style11">file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">100          </span><span class="style10">}</span>
+<span class="body">101  </span>
+<span class="body">102          </span><span class="style11">file</span><span class="style10">.</span><span class="style11">close</span><span class="style10">();</span>
+<span class="body">103      </span><span class="style10">}</span>
+<span class="body">104      </span><span class="style5">else </span><span class="style10">{</span>
+<span class="body">105          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"We can't open the file....!!" </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">106      </span><span class="style10">}</span>
+<span class="body">107  </span>
+<span class="body">108  </span><span class="style10">}</span>
+<span class="body">109  </span>
+<span class="body">110  </span><span class="style1">/*search function*/</span>
+<span class="body">111  </span><span class="style5">void </span><span class="style16">search</span><span class="style10">() {</span>
+<span class="body">112      </span><span class="style16">ifstream </span><span class="style11">file</span><span class="style10">(</span><span class="style6">"student.txt"</span><span class="style10">, </span><span class="style11">ios</span><span class="style10">::</span><span class="style11">in</span><span class="style10">);</span>
+<span class="body">113  </span>
+<span class="body">114      </span><span class="style1">/*search key variables */</span>
+<span class="body">115      </span><span class="style5">int </span><span class="style11">id_key</span><span class="style10">{};</span>
+<span class="body">116      </span><span class="style16">string </span><span class="style11">fname_key</span><span class="style10">{};</span>
+<span class="body">117      </span><span class="style16">string </span><span class="style11">lname_key</span><span class="style10">{};</span>
+<span class="body">118      </span><span class="style5">int </span><span class="style11">op</span><span class="style10">{};</span>
+<span class="body">119  </span>
+<span class="body">120      </span><span class="style1">/*search key option*/</span>
+<span class="body">121  </span><span class="style16">search</span><span class="style10">:</span>
+<span class="body">122      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"You want to search by\n1- ID\n2- first_name\n3- last_name\n"</span><span class="style10">;</span>
+<span class="body">123      </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">op</span><span class="style10">;</span>
+<span class="body">124      </span><span class="style5">switch </span><span class="style10">(</span><span class="style11">op</span><span class="style10">)</span>
+<span class="body">125      </span><span class="style10">{</span>
+<span class="body">126      </span><span class="style5">case </span><span class="style4">1</span><span class="style10">:</span>
+<span class="body">127          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the ID you Search for: "</span><span class="style10">;</span>
+<span class="body">128          </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">id_key</span><span class="style10">;</span>
+<span class="body">129          </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">130      </span><span class="style5">case </span><span class="style4">2</span><span class="style10">:</span>
+<span class="body">131          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the first_name you Search for: "</span><span class="style10">;</span>
+<span class="body">132          </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">fname_key</span><span class="style10">;</span>
+<span class="body">133          </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">134      </span><span class="style5">case </span><span class="style4">3</span><span class="style10">:</span>
+<span class="body">135          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the first_name you Search for: "</span><span class="style10">;</span>
+<span class="body">136          </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">lname_key</span><span class="style10">;</span>
+<span class="body">137          </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">138      </span><span class="style5">default</span><span class="style10">:</span>
+<span class="body">139          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Invalid Option....\n"</span><span class="style10">;</span>
+<span class="body">140          </span><span class="style5">goto </span><span class="style16">search</span><span class="style10">;</span>
+<span class="body">141          </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">142      </span><span class="style10">}</span>
+<span class="body">143  </span>
+<span class="body">144      </span><span class="style1">/*saerch in the file*/</span>
+<span class="body">145      </span><span class="style5">if </span><span class="style10">(</span><span class="style11">file</span><span class="style10">)</span>
+<span class="body">146      </span><span class="style10">{</span>
+<span class="body">147  </span>
+<span class="body">148          </span><span class="style5">while </span><span class="style10">(</span><span class="style11">file </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department</span><span class="style10">)</span>
+<span class="body">149          </span><span class="style10">{</span>
+<span class="body">150              </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">151              </span><span class="style10">{</span>
+<span class="body">152                  </span><span class="style11">file </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body">153              </span><span class="style10">}</span>
+<span class="body">154  </span>
+<span class="body">155  </span>
+<span class="body">156              </span><span class="style5">if </span><span class="style10">(</span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">== </span><span class="style11">id_key </span><span class="style10">|| </span><span class="style11">fname_key </span><span class="style10">== </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">|| </span><span class="style11">lname_key </span><span class="style10">== </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name</span><span class="style10">)</span>
+<span class="body">157              </span><span class="style10">{</span>
+<span class="body">158                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Student id: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">159                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Student first name: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">160                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Student last name: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">161                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Student gender: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">162                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Student phone number: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">163                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Student department: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">164                  </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">165                  </span><span class="style10">{</span>
+<span class="body">166                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"\nStudent mark " </span><span class="style10">&lt;&lt; </span><span class="style11">i </span><span class="style10">+ </span><span class="style4">1 </span><span class="style10">&lt;&lt; </span><span class="style6">" is: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body">167                      </span><span class="style5">if </span><span class="style10">(</span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt; </span><span class="style4">50</span><span class="style10">) {</span>
+<span class="body">168                          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"  Student is failed in this subject....):"</span><span class="style10">;</span>
+<span class="body">169                      </span><span class="style10">}</span>
+<span class="body">170                  </span><span class="style10">}</span>
+<span class="body">171              </span><span class="style10">}</span>
+<span class="body">172          </span><span class="style10">}</span>
+<span class="body">173  </span>
+<span class="body">174          </span><span class="style11">file</span><span class="style10">.</span><span class="style11">close</span><span class="style10">();</span>
+<span class="body">175      </span><span class="style10">}</span>
+<span class="body">176      </span><span class="style5">else </span><span class="style10">{</span>
+<span class="body">177          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"We can't open the file....!!" </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">178      </span><span class="style10">}</span>
+<span class="body">179  </span><span class="style10">}</span>
+<span class="body">180  </span>
+<span class="body">181  </span><span class="style2">//dispaly function</span>
+<span class="body">182  </span><span class="style5">void </span><span class="style11">display</span><span class="style10">() {</span>
+<span class="body">183      </span><span class="style16">ifstream </span><span class="style11">file</span><span class="style10">(</span><span class="style6">"student.txt"</span><span class="style10">, </span><span class="style11">ios</span><span class="style10">::</span><span class="style11">in</span><span class="style10">);</span>
+<span class="body">184  </span>
+<span class="body">185      </span><span class="style5">int </span><span class="style16">count</span><span class="style10">{};</span>
+<span class="body">186  </span>
+<span class="body">187      </span><span class="style1">/*display from the files*/</span>
+<span class="body">188      </span><span class="style5">if </span><span class="style10">(</span><span class="style11">file</span><span class="style10">)</span>
+<span class="body">189      </span><span class="style10">{</span>
+<span class="body">190  </span>
+<span class="body">191          </span><span class="style5">while </span><span class="style10">(</span><span class="style11">file </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department</span><span class="style10">)</span>
+<span class="body">192          </span><span class="style10">{</span>
+<span class="body">193  </span>
+<span class="body">194              </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">195              </span><span class="style10">{</span>
+<span class="body">196                  </span><span class="style11">file </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body">197              </span><span class="style10">}</span>
+<span class="body">198  </span>
+<span class="body">199  </span>
+<span class="body">200  </span>
+<span class="body">201  </span>
+<span class="body">202              </span><span class="style16">count</span><span class="style10">++;</span>
+<span class="body">203  </span>
+<span class="body">204              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"\t\t\tInformation about student " </span><span class="style10">&lt;&lt; </span><span class="style16">count</span>
+<span class="body">205                  </span><span class="style10">&lt;&lt; </span><span class="style6">"\nid:" </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id</span>
+<span class="body">206                  </span><span class="style10">&lt;&lt; </span><span class="style6">"\nfirst_name: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name</span>
+<span class="body">207                  </span><span class="style10">&lt;&lt; </span><span class="style6">"\nlast_name: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name</span>
+<span class="body">208                  </span><span class="style10">&lt;&lt; </span><span class="style6">"\ngender: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender</span>
+<span class="body">209                  </span><span class="style10">&lt;&lt; </span><span class="style6">"\nphone_number: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number</span>
+<span class="body">210                  </span><span class="style10">&lt;&lt; </span><span class="style6">"\ndepartment: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department</span><span class="style10">;</span>
+<span class="body">211              </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">212              </span><span class="style10">{</span>
+<span class="body">213                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"\nmark " </span><span class="style10">&lt;&lt; </span><span class="style11">i </span><span class="style10">+ </span><span class="style4">1 </span><span class="style10">&lt;&lt; </span><span class="style6">": " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body">214                  </span><span class="style5">if </span><span class="style10">(</span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt; </span><span class="style4">50</span><span class="style10">) {</span>
+<span class="body">215                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"  Student is failed in this subject....):"</span><span class="style10">;</span>
+<span class="body">216                  </span><span class="style10">}</span>
+<span class="body">217              </span><span class="style10">}</span>
+<span class="body">218              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style16">endl </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">219  </span>
+<span class="body">220          </span><span class="style10">}</span>
+<span class="body">221  </span>
+<span class="body">222          </span><span class="style11">file</span><span class="style10">.</span><span class="style11">close</span><span class="style10">();</span>
+<span class="body">223      </span><span class="style10">}</span>
+<span class="body">224      </span><span class="style5">else </span><span class="style10">{</span>
+<span class="body">225          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"We can't open the file....!!" </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">226      </span><span class="style10">}</span>
+<span class="body">227  </span>
+<span class="body">228  </span>
+<span class="body">229  </span><span class="style10">}</span>
+<span class="body">230  </span>
+<span class="body">231  </span><span class="style1">/*Delete function*/</span>
+<span class="body">232  </span><span class="style5">void </span><span class="style11">delete_student</span><span class="style10">() {</span>
+<span class="body">233      </span><span class="style16">ifstream </span><span class="style11">file</span><span class="style10">(</span><span class="style6">"student.txt"</span><span class="style10">, </span><span class="style11">ios</span><span class="style10">::</span><span class="style11">in</span><span class="style10">);</span>
+<span class="body">234      </span><span class="style16">ofstream </span><span class="style11">copy_file</span><span class="style10">(</span><span class="style6">"copy_student.txt"</span><span class="style10">, </span><span class="style11">ios</span><span class="style10">::</span><span class="style11">out </span><span class="style10">| </span><span class="style11">ios</span><span class="style10">::</span><span class="style11">app</span><span class="style10">);</span>
+<span class="body">235  </span>
+<span class="body">236      </span><span class="style5">int </span><span class="style11">delete_id</span><span class="style10">{};</span>
+<span class="body">237      </span><span class="style5">bool </span><span class="style16">find </span><span class="style10">= </span><span class="style5">false</span><span class="style10">;</span>
+<span class="body">238  </span>
+<span class="body">239      </span><span class="style1">/*select and delete from the file*/</span>
+<span class="body">240      </span><span class="style5">if </span><span class="style10">(</span><span class="style11">file</span><span class="style10">)</span>
+<span class="body">241      </span><span class="style10">{</span>
+<span class="body">242          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter The student ID that you want to delete: "</span><span class="style10">;</span>
+<span class="body">243          </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">delete_id</span><span class="style10">;</span>
+<span class="body">244          </span><span class="style5">while </span><span class="style10">(</span><span class="style11">file </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department</span><span class="style10">)</span>
+<span class="body">245          </span><span class="style10">{</span>
+<span class="body">246              </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">247              </span><span class="style10">{</span>
+<span class="body">248                  </span><span class="style11">file </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body">249              </span><span class="style10">}</span>
+<span class="body">250  </span>
+<span class="body">251              </span><span class="style5">if </span><span class="style10">(</span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">!= </span><span class="style11">delete_id</span><span class="style10">)</span>
+<span class="body">252              </span><span class="style10">{</span>
+<span class="body">253                  </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">&lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">254                  </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">255                  </span><span class="style10">{</span>
+<span class="body">256                      </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">257                  </span><span class="style10">}</span>
+<span class="body">258              </span><span class="style10">}</span>
+<span class="body">259              </span><span class="style5">else </span><span class="style10">{</span>
+<span class="body">260                  </span><span class="style16">find </span><span class="style10">= </span><span class="style5">true</span><span class="style10">;</span>
+<span class="body">261                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Student delete seccessfuly.....\n"</span><span class="style10">;</span>
+<span class="body">262              </span><span class="style10">}</span>
+<span class="body">263          </span><span class="style10">}</span>
+<span class="body">264  </span>
+<span class="body">265          </span><span class="style5">if </span><span class="style10">(!</span><span class="style16">find</span><span class="style10">)</span>
+<span class="body">266          </span><span class="style10">{</span>
+<span class="body">267              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Student Not Find....." </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">268          </span><span class="style10">}</span>
+<span class="body">269  </span>
+<span class="body">270          </span><span class="style11">file</span><span class="style10">.</span><span class="style11">close</span><span class="style10">();</span>
+<span class="body">271          </span><span class="style11">copy_file</span><span class="style10">.</span><span class="style11">close</span><span class="style10">();</span>
+<span class="body">272  </span>
+<span class="body">273          </span><span class="style16">remove</span><span class="style10">(</span><span class="style6">"student.txt"</span><span class="style10">);</span>
+<span class="body">274          </span><span class="style11">rename</span><span class="style10">(</span><span class="style6">"copy_student.txt"</span><span class="style10">, </span><span class="style6">"student.txt"</span><span class="style10">);</span>
+<span class="body">275      </span><span class="style10">}</span>
+<span class="body">276      </span><span class="style5">else </span><span class="style10">{</span>
+<span class="body">277          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"We can't open the file....!!" </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">278      </span><span class="style10">}</span>
+<span class="body">279  </span><span class="style10">}</span>
+<span class="body">280  </span>
+<span class="body">281  </span><span class="style1">/*Update function*/</span>
+<span class="body">282  </span><span class="style5">void </span><span class="style11">update_student</span><span class="style10">() {</span>
+<span class="body">283  </span>
+<span class="body">284      </span><span class="style5">int </span><span class="style11">update_id</span><span class="style10">{};</span>
+<span class="body">285      </span><span class="style5">bool </span><span class="style16">find </span><span class="style10">= </span><span class="style5">false</span><span class="style10">;</span>
+<span class="body">286  </span>
+<span class="body">287      </span><span class="style16">ifstream </span><span class="style11">file</span><span class="style10">(</span><span class="style6">"student.txt"</span><span class="style10">, </span><span class="style11">ios</span><span class="style10">::</span><span class="style11">in</span><span class="style10">);</span>
+<span class="body">288      </span><span class="style16">ofstream </span><span class="style11">copy_file</span><span class="style10">(</span><span class="style6">"copy_student.txt"</span><span class="style10">, </span><span class="style11">ios</span><span class="style10">::</span><span class="style11">app </span><span class="style10">| </span><span class="style11">ios</span><span class="style10">::</span><span class="style11">out</span><span class="style10">);</span>
+<span class="body">289  </span>
+<span class="body">290      </span><span class="style1">/*select and update from the file*/</span>
+<span class="body">291      </span><span class="style5">if </span><span class="style10">(</span><span class="style11">file</span><span class="style10">) {</span>
+<span class="body">292          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter The student ID that you want to update :"</span><span class="style10">;</span>
+<span class="body">293          </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">update_id</span><span class="style10">;</span>
+<span class="body">294  </span>
+<span class="body">295          </span><span class="style5">while </span><span class="style10">(</span><span class="style11">file </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department</span><span class="style10">)</span>
+<span class="body">296          </span><span class="style10">{</span>
+<span class="body">297              </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">298              </span><span class="style10">{</span>
+<span class="body">299                  </span><span class="style11">file </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body">300              </span><span class="style10">}</span>
+<span class="body">301  </span>
+<span class="body">302              </span><span class="style5">if </span><span class="style10">(</span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">!= </span><span class="style11">update_id</span><span class="style10">)</span>
+<span class="body">303              </span><span class="style10">{</span>
+<span class="body">304                  </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">&lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">305                  </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">306                  </span><span class="style10">{</span>
+<span class="body">307                      </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">308                  </span><span class="style10">}</span>
+<span class="body">309              </span><span class="style10">}</span>
+<span class="body">310              </span><span class="style5">else</span>
+<span class="body">311              </span><span class="style10">{</span>
+<span class="body">312                  </span><span class="style5">int </span><span class="style11">op</span><span class="style10">{};</span>
+<span class="body">313              </span><span class="style11">update</span><span class="style10">:</span>
+<span class="body">314                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"What you want to update: \n1- ID\n2- First_name\n3- Last_name\n4- Gender\n5- Number\n6- Department\n7- Grade\n8- All\n"</span><span class="style10">;</span>
+<span class="body">315                  </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">op</span><span class="style10">;</span>
+<span class="body">316  </span>
+<span class="body">317                  </span><span class="style5">switch </span><span class="style10">(</span><span class="style11">op</span><span class="style10">)</span>
+<span class="body">318                  </span><span class="style10">{</span>
+<span class="body">319                  </span><span class="style5">case </span><span class="style4">1</span><span class="style10">:</span>
+<span class="body">320                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new ID: "</span><span class="style10">;</span>
+<span class="body">321                      </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id</span><span class="style10">;</span>
+<span class="body">322                      </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">&lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">323                      </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">324                      </span><span class="style10">{</span>
+<span class="body">325                          </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">326                      </span><span class="style10">}</span>
+<span class="body">327                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">328                  </span><span class="style5">case </span><span class="style4">2</span><span class="style10">:</span>
+<span class="body">329                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new first name: "</span><span class="style10">;</span>
+<span class="body">330                      </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name</span><span class="style10">;</span>
+<span class="body">331                      </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">&lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">332                      </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">333                      </span><span class="style10">{</span>
+<span class="body">334                          </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">335                      </span><span class="style10">}</span>
+<span class="body">336                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">337                  </span><span class="style5">case </span><span class="style4">3</span><span class="style10">:</span>
+<span class="body">338                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new last name: "</span><span class="style10">;</span>
+<span class="body">339                      </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name</span><span class="style10">;</span>
+<span class="body">340                      </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">&lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">341                      </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">342                      </span><span class="style10">{</span>
+<span class="body">343                          </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">344                      </span><span class="style10">}</span>
+<span class="body">345                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">346                  </span><span class="style5">case </span><span class="style4">4</span><span class="style10">:</span>
+<span class="body">347                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new gender: "</span><span class="style10">;</span>
+<span class="body">348                      </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender</span><span class="style10">;</span>
+<span class="body">349                      </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">&lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">350                      </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">351                      </span><span class="style10">{</span>
+<span class="body">352                          </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">353                      </span><span class="style10">}</span>
+<span class="body">354                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">355                  </span><span class="style5">case </span><span class="style4">5</span><span class="style10">:</span>
+<span class="body">356                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new phone number: "</span><span class="style10">;</span>
+<span class="body">357                      </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number</span><span class="style10">;</span>
+<span class="body">358                      </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">&lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">359                      </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">360                      </span><span class="style10">{</span>
+<span class="body">361                          </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">362                      </span><span class="style10">}</span>
+<span class="body">363                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">364                  </span><span class="style5">case </span><span class="style4">6</span><span class="style10">:</span>
+<span class="body">365                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new department: "</span><span class="style10">;</span>
+<span class="body">366                      </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department</span><span class="style10">;</span>
+<span class="body">367                      </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">&lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">368                      </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">369                      </span><span class="style10">{</span>
+<span class="body">370                          </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">371                      </span><span class="style10">}</span>
+<span class="body">372                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">373                  </span><span class="style5">case </span><span class="style4">7</span><span class="style10">:</span>
+<span class="body">374                      </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">375                      </span><span class="style10">{</span>
+<span class="body">376                          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new grade " </span><span class="style10">&lt;&lt; </span><span class="style11">i </span><span class="style10">+ </span><span class="style4">1 </span><span class="style10">&lt;&lt; </span><span class="style6">": "</span><span class="style10">;</span>
+<span class="body">377                          </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body">378                      </span><span class="style10">}</span>
+<span class="body">379                      </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">&lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">380                      </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">381                      </span><span class="style10">{</span>
+<span class="body">382                          </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">383                      </span><span class="style10">}</span>
+<span class="body">384                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">385                  </span><span class="style5">case </span><span class="style4">8</span><span class="style10">:</span>
+<span class="body">386                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new ID: "</span><span class="style10">;</span>
+<span class="body">387                      </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id</span><span class="style10">;</span>
+<span class="body">388                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new first name: "</span><span class="style10">;</span>
+<span class="body">389                      </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name</span><span class="style10">;</span>
+<span class="body">390                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new last name: "</span><span class="style10">;</span>
+<span class="body">391                      </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name</span><span class="style10">;</span>
+<span class="body">392                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new Gender: "</span><span class="style10">;</span>
+<span class="body">393                      </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender</span><span class="style10">;</span>
+<span class="body">394                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new phone number: "</span><span class="style10">;</span>
+<span class="body">395                      </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number</span><span class="style10">;</span>
+<span class="body">396                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new department: "</span><span class="style10">;</span>
+<span class="body">397                      </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department</span><span class="style10">;</span>
+<span class="body">398                      </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">399                      </span><span class="style10">{</span>
+<span class="body">400                          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Enter the new grade " </span><span class="style10">&lt;&lt; </span><span class="style11">i </span><span class="style10">+ </span><span class="style4">1 </span><span class="style10">&lt;&lt; </span><span class="style6">": "</span><span class="style10">;</span>
+<span class="body">401                          </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body">402                      </span><span class="style10">}</span>
+<span class="body">403  </span>
+<span class="body">404                      </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&lt;&lt; </span><span class="style7">' ' </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department </span><span class="style10">&lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">405                      </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">406                      </span><span class="style10">{</span>
+<span class="body">407                          </span><span class="style11">copy_file </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] &lt;&lt; </span><span class="style7">' '</span><span class="style10">;</span>
+<span class="body">408                      </span><span class="style10">}</span>
+<span class="body">409                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">410                  </span><span class="style5">default</span><span class="style10">:</span>
+<span class="body">411                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Invalid Option....\n"</span><span class="style10">;</span>
+<span class="body">412                      </span><span class="style5">goto </span><span class="style11">update</span><span class="style10">;</span>
+<span class="body">413                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">414                  </span><span class="style10">}</span>
+<span class="body">415                  </span><span class="style16">find </span><span class="style10">= </span><span class="style5">true</span><span class="style10">;</span>
+<span class="body">416                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Student Updated Seccessfuly.....\n"</span><span class="style10">;</span>
+<span class="body">417              </span><span class="style10">}</span>
+<span class="body">418          </span><span class="style10">}</span>
+<span class="body">419  </span>
+<span class="body">420          </span><span class="style5">if </span><span class="style10">(!</span><span class="style16">find</span><span class="style10">)</span>
+<span class="body">421          </span><span class="style10">{</span>
+<span class="body">422              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Student Not Find....." </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">423          </span><span class="style10">}</span>
+<span class="body">424  </span>
+<span class="body">425          </span><span class="style11">file</span><span class="style10">.</span><span class="style11">close</span><span class="style10">();</span>
+<span class="body">426          </span><span class="style11">copy_file</span><span class="style10">.</span><span class="style11">close</span><span class="style10">();</span>
+<span class="body">427  </span>
+<span class="body">428          </span><span class="style16">remove</span><span class="style10">(</span><span class="style6">"student.txt"</span><span class="style10">);</span>
+<span class="body">429          </span><span class="style11">rename</span><span class="style10">(</span><span class="style6">"copy_student.txt"</span><span class="style10">, </span><span class="style6">"student.txt"</span><span class="style10">);</span>
+<span class="body">430      </span><span class="style10">}</span>
+<span class="body">431      </span><span class="style5">else </span><span class="style10">{</span>
+<span class="body">432      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"We can't open the file....!!" </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">433      </span><span class="style10">}</span>
+<span class="body">434  </span>
+<span class="body">435  </span><span class="style10">}</span>
+<span class="body">436  </span>
+<span class="body">437  </span><span class="style1">/*Five Top function*/</span>
+<span class="body">438  </span><span class="style5">void </span><span class="style11">fiveTop</span><span class="style10">() {</span>
+<span class="body">439      </span><span class="style16">ifstream </span><span class="style11">file</span><span class="style10">(</span><span class="style6">"student.txt"</span><span class="style10">, </span><span class="style11">ios</span><span class="style10">::</span><span class="style11">in</span><span class="style10">);</span>
+<span class="body">440  </span>
+<span class="body">441  </span>
+<span class="body">442  </span>
+<span class="body">443  </span>
+<span class="body">444            </span><span class="style5">if </span><span class="style10">(</span><span class="style11">file</span><span class="style10">)</span>
+<span class="body">445      </span><span class="style10">{</span>
+<span class="body">446  </span>
+<span class="body">447          </span><span class="style1">/*Five Top variables Help Me With Array*/</span>
+<span class="body">448          </span><span class="style5">float </span><span class="style11">top</span><span class="style10">[</span><span class="style4">100</span><span class="style10">]{};</span>
+<span class="body">449          </span><span class="style5">int </span><span class="style11">sum</span><span class="style10">{};</span>
+<span class="body">450          </span><span class="style5">float </span><span class="style11">avg</span><span class="style10">{};</span>
+<span class="body">451          </span><span class="style5">int </span><span class="style16">count</span><span class="style10">{};</span>
+<span class="body">452          </span><span class="style5">int </span><span class="style11">largeIndex</span><span class="style10">{};</span>
+<span class="body">453  </span>
+<span class="body">454          </span><span class="style1">/*Get The Average for each student and add it to the array*/</span>
+<span class="body">455          </span><span class="style5">while </span><span class="style10">(</span><span class="style11">file </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department</span><span class="style10">)</span>
+<span class="body">456          </span><span class="style10">{</span>
+<span class="body">457              </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">458              </span><span class="style10">{</span>
+<span class="body">459                  </span><span class="style11">file </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body">460                  </span><span class="style11">sum </span><span class="style10">+= </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body">461              </span><span class="style10">}</span>
+<span class="body">462              </span><span class="style11">top</span><span class="style10">[</span><span class="style16">count</span><span class="style10">] = </span><span class="style11">sum </span><span class="style10">/ </span><span class="style4">7.0</span><span class="style10">;</span>
+<span class="body">463              </span><span class="style11">sum </span><span class="style10">= </span><span class="style4">0</span><span class="style10">;</span>
+<span class="body">464              </span><span class="style16">count</span><span class="style10">++;</span>
+<span class="body">465          </span><span class="style10">}</span>
+<span class="body">466  </span>
+<span class="body">467  </span>
+<span class="body">468          </span><span class="style1">/*Sort The array with the five top*/</span>
+<span class="body">469          </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style16">count </span><span class="style10">- </span><span class="style4">1</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">470          </span><span class="style10">{</span>
+<span class="body">471              </span><span class="style11">largeIndex </span><span class="style10">= </span><span class="style11">i</span><span class="style10">;</span>
+<span class="body">472              </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">j </span><span class="style10">= </span><span class="style11">i </span><span class="style10">+ </span><span class="style4">1</span><span class="style10">; </span><span class="style11">j </span><span class="style10">&lt; </span><span class="style16">count</span><span class="style10">; </span><span class="style11">j</span><span class="style10">++)</span>
+<span class="body">473              </span><span class="style10">{</span>
+<span class="body">474                  </span><span class="style5">if </span><span class="style10">(</span><span class="style11">top</span><span class="style10">[</span><span class="style11">largeIndex</span><span class="style10">] &lt; </span><span class="style11">top</span><span class="style10">[</span><span class="style11">j</span><span class="style10">]) {</span>
+<span class="body">475                      </span><span class="style11">largeIndex </span><span class="style10">= </span><span class="style11">j</span><span class="style10">;</span>
+<span class="body">476                  </span><span class="style10">}</span>
+<span class="body">477              </span><span class="style10">}</span>
+<span class="body">478  </span>
+<span class="body">479              </span><span class="style5">float </span><span class="style11">temp </span><span class="style10">= </span><span class="style11">top</span><span class="style10">[</span><span class="style11">largeIndex</span><span class="style10">];</span>
+<span class="body">480              </span><span class="style11">top</span><span class="style10">[</span><span class="style11">largeIndex</span><span class="style10">] = </span><span class="style11">top</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body">481              </span><span class="style11">top</span><span class="style10">[</span><span class="style11">i</span><span class="style10">] = </span><span class="style11">temp</span><span class="style10">;</span>
+<span class="body">482          </span><span class="style10">}</span>
+<span class="body">483  </span>
+<span class="body">484          </span><span class="style1">/*Print The Five Top Students*/</span>
+<span class="body">485          </span><span class="style16">ifstream </span><span class="style11">file</span><span class="style10">(</span><span class="style6">"student.txt"</span><span class="style10">, </span><span class="style11">ios</span><span class="style10">::</span><span class="style11">in</span><span class="style10">);</span>
+<span class="body">486          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"The First Five Top Students Are: " </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">487          </span><span class="style5">while </span><span class="style10">(</span><span class="style11">file </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">gender </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">phone_number </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">department</span><span class="style10">)</span>
+<span class="body">488          </span><span class="style10">{</span>
+<span class="body">489              </span><span class="style5">for </span><span class="style10">(</span><span class="style5">size_t </span><span class="style11">i </span><span class="style10">= </span><span class="style4">0</span><span class="style10">; </span><span class="style11">i </span><span class="style10">&lt; </span><span class="style4">7</span><span class="style10">; </span><span class="style11">i</span><span class="style10">++)</span>
+<span class="body">490              </span><span class="style10">{</span>
+<span class="body">491                  </span><span class="style11">file </span><span class="style10">&gt;&gt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body">492                  </span><span class="style11">sum </span><span class="style10">+= </span><span class="style11">student</span><span class="style10">.</span><span class="style11">marks</span><span class="style10">[</span><span class="style11">i</span><span class="style10">];</span>
+<span class="body">493              </span><span class="style10">}</span>
+<span class="body">494              </span><span class="style11">avg </span><span class="style10">= </span><span class="style11">sum </span><span class="style10">/ </span><span class="style4">7.0</span><span class="style10">;</span>
+<span class="body">495  </span>
+<span class="body">496              </span><span class="style5">if </span><span class="style10">(</span><span class="style11">avg </span><span class="style10">== </span><span class="style11">top</span><span class="style10">[</span><span class="style4">0</span><span class="style10">] || </span><span class="style11">avg </span><span class="style10">== </span><span class="style11">top</span><span class="style10">[</span><span class="style4">1</span><span class="style10">] || </span><span class="style11">avg </span><span class="style10">== </span><span class="style11">top</span><span class="style10">[</span><span class="style4">2</span><span class="style10">] || </span><span class="style11">avg </span><span class="style10">== </span><span class="style11">top</span><span class="style10">[</span><span class="style4">3</span><span class="style10">] || </span><span class="style11">avg </span><span class="style10">== </span><span class="style11">top</span><span class="style10">[</span><span class="style4">4</span><span class="style10">]) {</span>
+<span class="body">497                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"ID: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">id</span>
+<span class="body">498                      </span><span class="style10">&lt;&lt; </span><span class="style6">"\nFirst name: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">first_name</span>
+<span class="body">499                      </span><span class="style10">&lt;&lt; </span><span class="style6">"\nLast name: " </span><span class="style10">&lt;&lt; </span><span class="style11">student</span><span class="style10">.</span><span class="style11">last_name</span>
+<span class="body">500                      </span><span class="style10">&lt;&lt; </span><span class="style6">"\nAVG: " </span><span class="style10">&lt;&lt; </span><span class="style11">avg </span><span class="style10">&lt;&lt; </span><span class="style16">endl </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">501              </span><span class="style10">}</span>
+<span class="body">502  </span>
+<span class="body">503              </span><span class="style11">sum </span><span class="style10">= </span><span class="style4">0</span><span class="style10">;</span>
+<span class="body">504              </span><span class="style11">avg </span><span class="style10">= </span><span class="style4">0</span><span class="style10">;</span>
+<span class="body">505  </span>
+<span class="body">506          </span><span class="style10">}</span>
+<span class="body">507          </span><span class="style11">file</span><span class="style10">.</span><span class="style11">close</span><span class="style10">();</span>
+<span class="body">508      </span><span class="style10">}</span>
+<span class="body">509      </span><span class="style5">else</span>
+<span class="body">510      </span><span class="style10">{</span>
+<span class="body">511          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"We can't open this file....\n"</span><span class="style10">;</span>
+<span class="body">512      </span><span class="style10">}</span>
+<span class="body">513  </span><span class="style10">}</span>
+<span class="body">514  </span>
+<span class="body">515  </span><span class="style5">int </span><span class="style11">main</span><span class="style10">() {</span>
+<span class="body">516      </span><span class="style5">int </span><span class="style11">option1</span><span class="style10">{};</span>
+<span class="body">517      </span><span class="style5">int </span><span class="style11">option2</span><span class="style10">{};</span>
+<span class="body">518      </span><span class="style5">int </span><span class="style11">pass</span><span class="style10">{};</span>
+<span class="body">519      </span><span class="style5">int </span><span class="style11">trys</span><span class="style10">{};</span>
+<span class="body">520  </span>
+<span class="body">521  </span>
+<span class="body">522      </span><span class="style5">while </span><span class="style10">(</span><span class="style5">true</span><span class="style10">)</span>
+<span class="body">523      </span><span class="style10">{</span>
+<span class="body">524          </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">525      </span><span class="style11">privilage</span><span class="style10">:</span>
+<span class="body">526          </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">527          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"\n\n------------------------------------------------------------------\n"</span><span class="style10">;</span>
+<span class="body">528          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"                       STUDENT SYSTEM                                  \n"</span><span class="style10">;</span>
+<span class="body">529          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"------------------------------------------------------------------\n\n\n"</span><span class="style10">;</span>
+<span class="body">530  </span>
+<span class="body">531          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"What is your privilage: " </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">532          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"1- Teacher..." </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">533          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"2- Student..." </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">534          </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"3- Exit..." </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">535          </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">option1</span><span class="style10">;</span>
+<span class="body">536  </span>
+<span class="body">537          </span><span class="style5">switch </span><span class="style10">(</span><span class="style11">option1</span><span class="style10">)</span>
+<span class="body">538          </span><span class="style10">{</span>
+<span class="body">539          </span><span class="style5">case </span><span class="style4">1</span><span class="style10">:</span>
+<span class="body">540          </span><span class="style11">password</span><span class="style10">:</span>
+<span class="body">541              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"What is the password: "</span><span class="style10">;</span>
+<span class="body">542              </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">pass</span><span class="style10">;</span>
+<span class="body">543              </span><span class="style5">if </span><span class="style10">(</span><span class="style11">pass </span><span class="style10">== </span><span class="style4">1234</span><span class="style10">)</span>
+<span class="body">544              </span><span class="style10">{</span>
+<span class="body">545              </span><span class="style11">teacherCase</span><span class="style10">:</span>
+<span class="body">546                  </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">547                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"\n\n------------------------------------------------------------------\n"</span><span class="style10">;</span>
+<span class="body">548                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"                       TEACHER MENUE                                 \n"</span><span class="style10">;</span>
+<span class="body">549                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"------------------------------------------------------------------\n\n\n"</span><span class="style10">;</span>
+<span class="body">550                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"WELCOME TO THE MENUE WHAT DO YOU WANT TO DO SELECT AN OPTION PLEASE: "</span>
+<span class="body">551                      </span><span class="style10">&lt;&lt; </span><span class="style6">"\n1- Display all students..."</span>
+<span class="body">552                      </span><span class="style10">&lt;&lt; </span><span class="style6">"\n2- Add a student..."</span>
+<span class="body">553                      </span><span class="style10">&lt;&lt; </span><span class="style6">"\n3- Delete a student..."</span>
+<span class="body">554                      </span><span class="style10">&lt;&lt; </span><span class="style6">"\n4- Update a student..."</span>
+<span class="body">555                      </span><span class="style10">&lt;&lt; </span><span class="style6">"\n5- Search for a student..."</span>
+<span class="body">556                      </span><span class="style10">&lt;&lt; </span><span class="style6">"\n6- Find the 5 top students..."</span>
+<span class="body">557                      </span><span class="style10">&lt;&lt; </span><span class="style6">"\n7- Exit.."</span>
+<span class="body">558                      </span><span class="style10">&lt;&lt; </span><span class="style6">"\nYour option please: "</span><span class="style10">;</span>
+<span class="body">559                  </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">option2</span><span class="style10">;</span>
+<span class="body">560  </span>
+<span class="body">561                  </span><span class="style5">switch </span><span class="style10">(</span><span class="style11">option2</span><span class="style10">)</span>
+<span class="body">562                  </span><span class="style10">{</span>
+<span class="body">563                  </span><span class="style5">case </span><span class="style4">1</span><span class="style10">:</span>
+<span class="body">564                      </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">565                      </span><span class="style11">display</span><span class="style10">();</span>
+<span class="body">566                      </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"pause &gt; 0"</span><span class="style10">);</span>
+<span class="body">567                      </span><span class="style5">goto </span><span class="style11">teacherCase</span><span class="style10">;</span>
+<span class="body">568                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">569                  </span><span class="style5">case </span><span class="style4">2</span><span class="style10">:</span>
+<span class="body">570                      </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">571                      </span><span class="style11">add</span><span class="style10">();</span>
+<span class="body">572                      </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"pause &gt; 0"</span><span class="style10">);</span>
+<span class="body">573                      </span><span class="style5">goto </span><span class="style11">teacherCase</span><span class="style10">;</span>
+<span class="body">574                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">575                  </span><span class="style5">case </span><span class="style4">3</span><span class="style10">:</span>
+<span class="body">576                      </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">577                      </span><span class="style11">delete_student</span><span class="style10">();</span>
+<span class="body">578                      </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"pause &gt; 0"</span><span class="style10">);</span>
+<span class="body">579                      </span><span class="style5">goto </span><span class="style11">teacherCase</span><span class="style10">;</span>
+<span class="body">580                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">581                  </span><span class="style5">case </span><span class="style4">4</span><span class="style10">:</span>
+<span class="body">582                      </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">583                      </span><span class="style11">update_student</span><span class="style10">();</span>
+<span class="body">584                      </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"pause &gt; 0"</span><span class="style10">);</span>
+<span class="body">585                      </span><span class="style5">goto </span><span class="style11">teacherCase</span><span class="style10">;</span>
+<span class="body">586                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">587                  </span><span class="style5">case </span><span class="style4">5</span><span class="style10">:</span>
+<span class="body">588                      </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">589                      </span><span class="style16">search</span><span class="style10">();</span>
+<span class="body">590                      </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"pause &gt; 0"</span><span class="style10">);</span>
+<span class="body">591                      </span><span class="style5">goto </span><span class="style11">teacherCase</span><span class="style10">;</span>
+<span class="body">592                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">593                  </span><span class="style5">case </span><span class="style4">6</span><span class="style10">:</span>
+<span class="body">594                      </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">595                      </span><span class="style11">fiveTop</span><span class="style10">();</span>
+<span class="body">596                      </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"pause &gt; 0"</span><span class="style10">);</span>
+<span class="body">597                      </span><span class="style5">goto </span><span class="style11">teacherCase</span><span class="style10">;</span>
+<span class="body">598                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">599                  </span><span class="style5">case </span><span class="style4">7</span><span class="style10">:</span>
+<span class="body">600                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"\n\n-----------Good Luck, Baye.....(:" </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">601                      </span><span class="style5">goto </span><span class="style11">privilage</span><span class="style10">;</span>
+<span class="body">602                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">603                  </span><span class="style5">default</span><span class="style10">:</span>
+<span class="body">604                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Ivalid Input....):" </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">605                      </span><span class="style11">Sleep</span><span class="style10">(</span><span class="style4">1000</span><span class="style10">);</span>
+<span class="body">606                      </span><span class="style5">goto </span><span class="style11">teacherCase</span><span class="style10">;</span>
+<span class="body">607                      </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">608                  </span><span class="style10">}</span>
+<span class="body">609              </span><span class="style10">}</span>
+<span class="body">610              </span><span class="style5">else </span><span class="style10">{</span>
+<span class="body">611                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Wrong password........\n\n"</span><span class="style10">;</span>
+<span class="body">612                  </span><span class="style11">trys</span><span class="style10">++;</span>
+<span class="body">613                  </span><span class="style5">if </span><span class="style10">(</span><span class="style11">trys </span><span class="style10">&gt;= </span><span class="style4">3</span><span class="style10">)</span>
+<span class="body">614                  </span><span class="style10">{</span>
+<span class="body">615                      </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"You have passed the valid tryies...):\n"</span><span class="style10">;</span>
+<span class="body">616                      </span><span class="style5">goto </span><span class="style11">privilage</span><span class="style10">;</span>
+<span class="body">617                  </span><span class="style10">}</span>
+<span class="body">618                  </span><span class="style5">goto </span><span class="style11">password</span><span class="style10">;</span>
+<span class="body">619              </span><span class="style10">}</span>
+<span class="body">620              </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">621          </span><span class="style5">case </span><span class="style4">2</span><span class="style10">:</span>
+<span class="body">622          </span><span class="style11">studentCase</span><span class="style10">:</span>
+<span class="body">623              </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">624              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"\n\n------------------------------------------------------------------\n"</span><span class="style10">;</span>
+<span class="body">625              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"                       STUDENT MENUE                                  \n"</span><span class="style10">;</span>
+<span class="body">626              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"------------------------------------------------------------------\n\n\n"</span><span class="style10">;</span>
+<span class="body">627              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"WELCOME TO THE MENUE WHAT DO YOU WANT TO DO SELECT AN OPTION PLEASE: "</span>
+<span class="body">628                  </span><span class="style10">&lt;&lt; </span><span class="style6">"\n1- Display all students..."</span>
+<span class="body">629                  </span><span class="style10">&lt;&lt; </span><span class="style6">"\n2- Search for a student..."</span>
+<span class="body">630                  </span><span class="style10">&lt;&lt; </span><span class="style6">"\n3- Find the 5 top students..."</span>
+<span class="body">631                  </span><span class="style10">&lt;&lt; </span><span class="style6">"\n4- Exit.."</span>
+<span class="body">632                  </span><span class="style10">&lt;&lt; </span><span class="style6">"\nYour option please: "</span><span class="style10">;</span>
+<span class="body">633              </span><span class="style16">cin </span><span class="style10">&gt;&gt; </span><span class="style11">option2</span><span class="style10">;</span>
+<span class="body">634  </span>
+<span class="body">635              </span><span class="style5">switch </span><span class="style10">(</span><span class="style11">option2</span><span class="style10">)</span>
+<span class="body">636              </span><span class="style10">{</span>
+<span class="body">637              </span><span class="style5">case </span><span class="style4">1</span><span class="style10">:</span>
+<span class="body">638                  </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">639                  </span><span class="style11">display</span><span class="style10">();</span>
+<span class="body">640                  </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"pause &gt; 0"</span><span class="style10">);</span>
+<span class="body">641                  </span><span class="style5">goto </span><span class="style11">teacherCase</span><span class="style10">;</span>
+<span class="body">642                  </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">643              </span><span class="style5">case </span><span class="style4">2</span><span class="style10">:</span>
+<span class="body">644                  </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">645                  </span><span class="style16">search</span><span class="style10">();</span>
+<span class="body">646                  </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"pause &gt; 0"</span><span class="style10">);</span>
+<span class="body">647                  </span><span class="style5">goto </span><span class="style11">teacherCase</span><span class="style10">;</span>
+<span class="body">648                  </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">649              </span><span class="style5">case </span><span class="style4">3</span><span class="style10">:</span>
+<span class="body">650                  </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">651                  </span><span class="style11">fiveTop</span><span class="style10">();</span>
+<span class="body">652                  </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"pause &gt; 0"</span><span class="style10">);</span>
+<span class="body">653                  </span><span class="style5">goto </span><span class="style11">teacherCase</span><span class="style10">;</span>
+<span class="body">654                  </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">655              </span><span class="style5">case </span><span class="style4">4</span><span class="style10">:</span>
+<span class="body">656                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"\n\n-----------Good Luck, Baye.....(:" </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">657                  </span><span class="style5">goto </span><span class="style11">privilage</span><span class="style10">;</span>
+<span class="body">658                  </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">659              </span><span class="style5">default</span><span class="style10">:</span>
+<span class="body">660                  </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Ivalid Input....):" </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">661                  </span><span class="style11">Sleep</span><span class="style10">(</span><span class="style4">1000</span><span class="style10">);</span>
+<span class="body">662                  </span><span class="style5">goto </span><span class="style11">studentCase</span><span class="style10">;</span>
+<span class="body">663                  </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">664              </span><span class="style10">}</span>
+<span class="body">665              </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">666          </span><span class="style5">case </span><span class="style4">3</span><span class="style10">:</span>
+<span class="body">667              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"\n\n-----------Good Luck, Baye.....(:" </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">668              </span><span class="style11">exit</span><span class="style10">(</span><span class="style4">1</span><span class="style10">);</span>
+<span class="body">669              </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">670          </span><span class="style5">default</span><span class="style10">:</span>
+<span class="body">671              </span><span class="style16">cout </span><span class="style10">&lt;&lt; </span><span class="style6">"Ivalid Input....):" </span><span class="style10">&lt;&lt; </span><span class="style16">endl</span><span class="style10">;</span>
+<span class="body">672              </span><span class="style11">Sleep</span><span class="style10">(</span><span class="style4">1000</span><span class="style10">);</span>
+<span class="body">673              </span><span class="style11">system</span><span class="style10">(</span><span class="style6">"cls"</span><span class="style10">);</span>
+<span class="body">674              </span><span class="style5">break</span><span class="style10">;</span>
+<span class="body">675          </span><span class="style10">}</span>
+<span class="body">676  </span>
+<span class="body">677  </span>
+<span class="body">678      </span><span class="style10">}</span>
+<span class="body">679  </span>
+<span class="body">680  </span>
+<span class="body">681      </span><span class="style5">return </span><span class="style4">0</span><span class="style10">;</span>
+<span class="body">682  </span><span class="style10">}</span></span>
+</code></pre>
+</body>
+</html>
