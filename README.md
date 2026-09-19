@@ -23,51 +23,51 @@ Information system backends fundamentally rely on the seamless execution of Crea
 
 ## Software Architecture Flowchart
 
-```mermaid
+mermaid
 flowchart TD
-    MENU([Console UI Main Menu]) --> SELECTION[Option Selection]
+    MENU(["Console UI Main Menu"]) --> SELECTION["Option Selection"]
     
-    SELECTION --> OPT1[Option 1: Add New Student]
-    OPT1 --> VAL1[Input Validation]
-    VAL1 --> APP[Append to Storage Stream \n`std::ofstream`]
+    SELECTION --> OPT1["Option 1: Add New Student"]
+    OPT1 --> VAL1["Input Validation"]
+    VAL1 --> APP["Append to Storage Stream \nstd::ofstream"]
     
-    SELECTION --> OPT2[Option 2: Display All Records]
-    OPT2 --> READ1[Read Sequential Stream \n`std::ifstream`]
-    READ1 --> VIEW[Format Console Tabular View]
+    SELECTION --> OPT2["Option 2: Display All Records"]
+    OPT2 --> READ1["Read Sequential Stream \nstd::ifstream"]
+    READ1 --> VIEW["Format Console Tabular View"]
     
-    SELECTION --> OPT3[Option 3: Search by Roll/ID]
-    OPT3 --> SCAN1[Linear Record Scan]
-    SCAN1 --> MATCH1{Match Found?}
-    MATCH1 -->|Yes| SHOW[Display Details]
-    MATCH1 -->|No| N_SHOW[Display 'Not Found']
+    SELECTION --> OPT3["Option 3: Search by Roll/ID"]
+    OPT3 --> SCAN1["Linear Record Scan"]
+    SCAN1 --> MATCH1{"Match Found?"}
+    MATCH1 -->|Yes| SHOW["Display Details"]
+    MATCH1 -->|No| N_SHOW["Display 'Not Found'"]
     
-    SELECTION --> OPT4[Option 4: Update Details]
-    OPT4 --> LOCATE1[Locate Target Record]
-    LOCATE1 --> MUT[In-Memory Mutation]
-    MUT --> WR1[Persist Updated File Buffer]
+    SELECTION --> OPT4["Option 4: Update Details"]
+    OPT4 --> LOCATE1["Locate Target Record"]
+    LOCATE1 --> MUT["In-Memory Mutation"]
+    MUT --> WR1["Persist Updated File Buffer"]
     
-    SELECTION --> OPT5[Option 5: Delete Record]
-    OPT5 --> FILT[Filter Out Target Record ID]
-    FILT --> REWR[Rewrite Persistent Stream Storage]
-```
+    SELECTION --> OPT5["Option 5: Delete Record"]
+    OPT5 --> FILT["Filter Out Target Record ID"]
+    FILT --> REWR["Rewrite Persistent Stream Storage"]
+
 
 ## Algorithmic & Complexity Models
 
 ### Operations Time Complexity Matrix
 Operating on raw sequential text/binary files without indexing necessitates distinct processing complexities:
-- **Insert Record (Append Mode `ios::app`)**: $\mathcal{O}(1)$ — Immediate write to EOF.
-- **Search Record by Primary Key**: $\mathcal{O}(N)$ — Sequential scan requiring up to $N$ disk reads.
-- **Modify / Delete Record**: $\mathcal{O}(N)$ — Requires scanning $N$ records, mutating/filtering in memory, and executing a complete file rewrite.
-- **Display All Records**: $\mathcal{O}(N)$ — $N$ disk reads and $N$ console render cycles.
+- **Insert Record (Append Mode `ios::app`)**: $\mathcal{"O"}(1)$ — Immediate write to EOF.
+- **Search Record by Primary Key**: $\mathcal{"O"}(N)$ — Sequential scan requiring up to $N$ disk reads.
+- **Modify / Delete Record**: $\mathcal{"O"}(N)$ — Requires scanning $N$ records, mutating/filtering in memory, and executing a complete file rewrite.
+- **Display All Records**: $\mathcal{"O"}(N)$ — $N$ disk reads and $N$ console render cycles.
 
 ### Memory & Storage Space Complexity
 By buffering records sequentially, the heap memory required remains independent of the database size:
-$$\text{Auxiliary Memory Space: } \mathcal{O}(1) \quad (\text{Direct stream record-by-record processing})$$
-$$\text{Disk File Footprint: } \text{Size} \approx N \times \text{sizeof}(\text{StudentRecord})$$
+$$\text{"Auxiliary Memory Space: "} \mathcal{"O"}(1) \quad (\text{"Direct stream record-by-record processing"})$$
+$$\text{"Disk File Footprint: "} \text{"Size"} \approx N \times \text{"sizeof"}(\text{"StudentRecord"})$$
 
 ### Record File Offset Calculation
-If the database transitions from text parsing to fixed-width binary serialization, $\mathcal{O}(1)$ record access can be achieved via stream offsets:
-$$\text{Byte Offset}(i) = i \times \text{sizeof}(\text{StudentRecord})$$
+If the database transitions from text parsing to fixed-width binary serialization, $\mathcal{"O"}(1)$ record access can be achieved via stream offsets:
+$$\text{"Byte Offset"}(i) = i \times \text{"sizeof"}(\text{"StudentRecord"})$$
 
 ## Build & Compilation Matrix
 To compile this project natively via a MinGW/GCC toolchain:
@@ -93,13 +93,13 @@ g++ -O2 "src/PROJECT OF A STUDENT SYSTEM IN C++ .cxx" -o bin/student_system.exe
 ```
 
 ## Authentic Artifacts Catalog
-- **Source Code Implementation**: Available directly within [`src/`](src/).
-- **Original Reports & Architecture Files**: Retained as historical references in [`docs/`](docs/).
-- **Application Execution Captures**: Console UI logs are verified in [`docs/images/`](docs/images/).
+- **Source Code Implementation**: Available directly within ["`src/`"](src/).
+- **Original Reports & Architecture Files**: Retained as historical references in ["`docs/`"](docs/).
+- **Application Execution Captures**: Console UI logs are verified in ["`docs/images/`"](docs/images/).
 
 ## Engineering Audit & Tradeoffs
-- **Flat File Storage vs. RDBMS**: Flat files (`.txt` / `.dat`) are excellent for minimal dependencies on embedded constraints. However, as $N$ scales, the $\mathcal{O}(N)$ cost of modifying a single record becomes untenable, mandating a transition to Relational Database Management Systems (RDBMS) like SQLite or PostgreSQL for B-Tree indexing and atomic ACID compliance.
-- **In-Memory Arrays vs. Disk-Backed Streaming**: Loading the entire file into a `std::vector` upon startup accelerates search queries to $\mathcal{O}(1)$ (via hash maps), but risks `std::bad_alloc` exceptions if the database size exceeds available physical RAM.
+- **Flat File Storage vs. RDBMS**: Flat files (`.txt` / `.dat`) are excellent for minimal dependencies on embedded constraints. However, as $N$ scales, the $\mathcal{"O"}(N)$ cost of modifying a single record becomes untenable, mandating a transition to Relational Database Management Systems (RDBMS) like SQLite or PostgreSQL for B-Tree indexing and atomic ACID compliance.
+- **In-Memory Arrays vs. Disk-Backed Streaming**: Loading the entire file into a `std::vector` upon startup accelerates search queries to $\mathcal{"O"}(1)$ (via hash maps), but risks `std::bad_alloc` exceptions if the database size exceeds available physical RAM.
 
 ---
 
@@ -108,4 +108,4 @@ Mechatronics Engineer | Mechanical Design & CAD (SolidWorks & AutoCAD) | Prevent
 [GitHub](https://github.com/Hassan-Moqbel) · [Facebook](https://www.facebook.com/share/1BqxAgVjHi/) · [LinkedIn](https://www.linkedin.com/in/hassan-moqbel)
 
 ## License
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the ["MIT License"](LICENSE).
