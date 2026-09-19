@@ -56,9 +56,9 @@ flowchart TD
 ### Operations Time Complexity Matrix
 Operating on raw sequential text/binary files without indexing necessitates distinct processing complexities:
 - **Insert Record (Append Mode `ios::app`)**: $\mathcal{O}(1)$ — Immediate write to EOF.
-- **Search Record by Primary Key**: $\mathcal{O}(N)$ — Sequential scan requiring up to $N$ disk reads.
-- **Modify / Delete Record**: $\mathcal{O}(N)$ — Requires scanning $N$ records, mutating/filtering in memory, and executing a complete file rewrite.
-- **Display All Records**: $\mathcal{O}(N)$ — $N$ disk reads and $N$ console render cycles.
+- **Search Record by Primary Key**: $\mathcal{O}(N)$— Sequential scan requiring up to$N$ disk reads.
+- **Modify / Delete Record**: $\mathcal{O}(N)$— Requires scanning$N$ records, mutating/filtering in memory, and executing a complete file rewrite.
+- **Display All Records**: $\mathcal{O}(N)$—$N$disk reads and$N$ console render cycles.
 
 ### Memory & Storage Space Complexity
 By buffering records sequentially, the heap memory required remains independent of the database size:
@@ -98,7 +98,7 @@ g++ -O2 "src/PROJECT OF A STUDENT SYSTEM IN C++ .cxx" -o bin/student_system.exe
 - **Application Execution Captures**: Console UI logs are verified in [`docs/images/`](docs/images/).
 
 ## Engineering Audit & Tradeoffs
-- **Flat File Storage vs. RDBMS**: Flat files (`.txt` / `.dat`) are excellent for minimal dependencies on embedded constraints. However, as $N$ scales, the $\mathcal{O}(N)$ cost of modifying a single record becomes untenable, mandating a transition to Relational Database Management Systems (RDBMS) like SQLite or PostgreSQL for B-Tree indexing and atomic ACID compliance.
+- **Flat File Storage vs. RDBMS**: Flat files (`.txt` / `.dat`) are excellent for minimal dependencies on embedded constraints. However, as $N$scales, the$\mathcal{O}(N)$ cost of modifying a single record becomes untenable, mandating a transition to Relational Database Management Systems (RDBMS) like SQLite or PostgreSQL for B-Tree indexing and atomic ACID compliance.
 - **In-Memory Arrays vs. Disk-Backed Streaming**: Loading the entire file into a `std::vector` upon startup accelerates search queries to $\mathcal{O}(1)$ (via hash maps), but risks `std::bad_alloc` exceptions if the database size exceeds available physical RAM.
 
 ---
